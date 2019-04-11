@@ -1,0 +1,113 @@
+<mvc:View
+	controllerName="opensap.salesOrderViewer.SalesOrderViewer.controller.Detail"
+	xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc">
+
+	<semantic:SemanticPage
+		id="detailPage"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title
+				text="{CompanyName}"
+				level="H2"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<ObjectAttribute title="{i18n>priceTitle}"/>
+
+		</semantic:headerContent>
+		<semantic:content>
+			<Table
+				id="lineItemsList"
+				width="auto"
+				items="{ToSalesOrders}"
+				updateFinished=".onListUpdateFinished"
+				noDataText="{i18n>detailLineItemTableNoDataText}"
+				busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							id="lineItemsTitle"
+							text="{detailView>/lineItemListTitle}"
+							titleStyle="H3"
+							level="H3"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>detailOrderNumber}"/>
+					</Column>
+					<Column>
+						<Text text ="{i18n>detailGrossAmount}"/>
+					</Column>
+					<Column>
+						<Text text = "{i18n>detailNetAmount}"/>
+					</Column>
+					<Column>
+						<Text text = "{i18n>detailTaxAmount}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>detailCurrency}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier
+								title="{SalesOrderID}"
+								/>
+							<ObjectNumber
+								number="{
+									path: 'GrossAmount',
+									formatter: '.formatter.currencyValue'
+								}"
+								/>
+							<ObjectNumber number="{
+							path: 'NetAmount',
+							formatter: '.formatter.currencyValue'
+								}"
+								/>
+							<ObjectNumber number="{
+							path: 'TaxAmount',
+							formatter: '.formatter.currencyValue'
+								}"
+								/>
+							<Text text="{
+								path: 'CurrencyCode'
+								}"
+							/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+		<!--Semantic ShareMenu Buttons-->
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press=".onSendEmailPress"/>
+		</semantic:sendEmailAction>
+
+		<semantic:closeAction>
+			<semantic:CloseAction
+					id="closeColumn"
+					press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction
+					id="enterFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction
+					id="exitFullScreen"
+					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+					press=".toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+
+	</semantic:SemanticPage>
+
+</mvc:View>
