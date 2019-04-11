@@ -63,9 +63,9 @@
 								/>
 							<ObjectNumber number="{
 							path: 'GrossAmount',
-								}">
-								numberState="{= ${number} > 500 ? 'Error' : 'Success'}"
-								</ObjectNumber>
+							formatter: '.formatter.currencyValue'
+								}"
+								/>
 							<ObjectNumber number="{
 							path: 'NetAmount',
 							formatter: '.formatter.currencyValue'
