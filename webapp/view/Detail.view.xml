@@ -14,8 +14,6 @@
 				level="H2"/>
 		</semantic:titleHeading>
 		<semantic:headerContent>
-			<ObjectAttribute title="{i18n>priceTitle}"/>
-
 		</semantic:headerContent>
 		<semantic:content>
 			<Table
@@ -55,14 +53,19 @@
 					<ColumnListItem>
 						<cells>
 							<ObjectIdentifier
-								title="{SalesOrderID}"
+							title="{
+								path : 'SalesOrderID', 
+								type : 'sap.ui.model.odata.type.String', 
+								constraints: { 
+								isDigitSequence : true
+									    }
+									}"
 								/>
-							<ObjectNumber
-								number="{
-									path: 'GrossAmount',
-									formatter: '.formatter.currencyValue'
-								}"
-								/>
+							<ObjectNumber number="{
+							path: 'GrossAmount',
+								}">
+								numberState="{= ${number} > 500 ? 'Error' : 'Success'}"
+								</ObjectNumber>
 							<ObjectNumber number="{
 							path: 'NetAmount',
 							formatter: '.formatter.currencyValue'
