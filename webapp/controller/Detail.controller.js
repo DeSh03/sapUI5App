@@ -4,8 +4,11 @@ sap.ui.define([
 	"../model/formatter",
 	"sap/m/library",
 	"sap/m/MessageToast"
+		
 ], function (BaseController, JSONModel, formatter, mobileLibrary, MessageToast) {
 	"use strict";
+
+
 
 	// shortcut for sap.m.URLHelper
 	var URLHelper = mobileLibrary.URLHelper;
@@ -17,6 +20,9 @@ sap.ui.define([
 		/* =========================================================== */
 		/* lifecycle methods                                           */
 		/* =========================================================== */
+
+
+
 
 		onInit : function () {
 			// Model used to manipulate control states. The chosen values make sure,
@@ -44,8 +50,17 @@ sap.ui.define([
 		 * @public
 		 */
 		 
+		 /** 
+		  *Metoda do usunięcia 
+		  */
 		 onPress: function (evt) {
 			MessageToast.show(evt.getSource().getId() + " Pressed");
+			var element = $(document).find("companyInfo");
+			if(element.visble === "false")
+			{
+			element.visble = "true";
+			}    
+			else{element.visble = "false";}
 		},
 		
 		

@@ -2,6 +2,7 @@
 	controllerName="opensap.salesOrderViewer.SalesOrderViewer.controller.Detail"
 	xmlns="sap.m"
 	xmlns:semantic="sap.f.semantic"
+	xmlns:l="sap.ui.layout"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	>
@@ -20,6 +21,40 @@
 						tooltip="Client details"
 						press="onPress">
 				</Button>
+			<Panel id="companyInfo" expandable="true" >
+				<content>
+					<Label 
+					text="{i18n>detailViewPartnerInfo}"
+					design="Bold"
+					/>
+					<l:Grid
+					binding="{/PersonCollection}"
+					class="sapUiSmallMarginTop"
+					hSpacing="2"
+					defaultSpan="L6 M6 S10">
+						<l:content>
+						<VBox>
+							<Text text="{i18n>detailsStreet}" />
+							<Text text="{0/Description}" />
+						</VBox>
+						<VBox>
+							<Text text="{i18n>detailsPostalCode}" />
+							<Text text="{1/Description}" />
+						</VBox>
+				
+						<VBox>
+							<Text text="{i18n>detailsCity}" />
+							<Text text="{2/Description}" />
+						</VBox>
+						
+						<VBox>
+							<Text text="{i18n>detailsCountry}"/>
+							<Text text="add binding"/>
+						</VBox>
+					</l:content>
+					</l:Grid>
+				</content>
+			</Panel>
 		</semantic:headerContent>
 		<semantic:content>
 			
