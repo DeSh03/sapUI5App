@@ -2,8 +2,9 @@ sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
-	"sap/m/library"
-], function (BaseController, JSONModel, formatter, mobileLibrary) {
+	"sap/m/library",
+	"sap/m/MessageToast"
+], function (BaseController, JSONModel, formatter, mobileLibrary, MessageToast) {
 	"use strict";
 
 	// shortcut for sap.m.URLHelper
@@ -42,6 +43,12 @@ sap.ui.define([
 		 * Event handler when the share by E-Mail button has been clicked
 		 * @public
 		 */
+		 
+		 onPress: function (evt) {
+			MessageToast.show(evt.getSource().getId() + " Pressed");
+		},
+		
+		
 		onSendEmailPress : function () {
 			var oViewModel = this.getModel("detailView");
 

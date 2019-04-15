@@ -2,7 +2,9 @@
 	controllerName="opensap.salesOrderViewer.SalesOrderViewer.controller.Detail"
 	xmlns="sap.m"
 	xmlns:semantic="sap.f.semantic"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	>
 
 	<semantic:SemanticPage
 		id="detailPage"
@@ -14,8 +16,13 @@
 				level="H2"/>
 		</semantic:titleHeading>
 		<semantic:headerContent>
+				<Button text="Client details"
+						tooltip="Client details"
+						press="onPress">
+				</Button>
 		</semantic:headerContent>
 		<semantic:content>
+			
 			<Table
 				id="lineItemsList"
 				width="auto"
@@ -65,6 +72,10 @@
 							path: 'GrossAmount',
 							formatter: '.formatter.currencyValue'
 								}"
+							state="{
+							path: 'GrossAmount',
+							formatter: '.formatter.grossAmountChecker'
+								}"	
 								/>
 							<ObjectNumber number="{
 							path: 'NetAmount',
