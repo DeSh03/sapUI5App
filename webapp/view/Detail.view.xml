@@ -40,20 +40,40 @@
 					</Toolbar>
 				</headerToolbar>
 				<columns>
-					<Column>
-						<Text text="{i18n>detailOrderNumber}"/>
+					<Column id= "orderNumber">
+						<Label labelFor="myColumn"
+							    design="Bold"
+							    text="{i18n>detailOrderNumber}"
+							    wrapping="true"
+						/>
 					</Column>
-					<Column>
-						<Text text ="{i18n>detailGrossAmount}"/>
+					<Column id ="grossAmount">
+						<Label labelFor="grossAmount"
+							    design="Bold"
+							    text="{i18n>detailGrossAmount}"
+							    wrapping="true"
+						/>
 					</Column>
-					<Column>
-						<Text text = "{i18n>detailNetAmount}"/>
+					<Column id = "netAmount">
+						<Label labelFor="netAmount"
+							    design="Bold"
+							    text="{i18n>detailNetAmount}"
+							    wrapping="true"
+						/>
 					</Column>
-					<Column>
-						<Text text = "{i18n>detailTaxAmount}"/>
+					<Column id = "taxAmount">
+						<Label labelFor="taxAmount"
+							    design="Bold"
+							    text="{i18n>detailTaxAmount}"
+							    wrapping="true"
+						/>
 					</Column>
-					<Column minScreenWidth="Tablet">
-						<Text text="{i18n>detailCurrency}"/>
+					<Column id = "detailCurrency" minScreenWidth="Tablet">
+						<Label labelFor="grossAmount"
+							    design="Bold"
+							    text="{i18n>detailCurrency}"
+							    wrapping="true"
+						/>
 					</Column>
 				</columns>
 				<items>
@@ -70,7 +90,7 @@
 								/>
 							<ObjectNumber number="{
 							path: 'GrossAmount',
-							formatter: '.formatter.currencyValue'
+							formatter: '.formatter.dotToComaChanger'
 								}"
 							state="{
 							path: 'GrossAmount',
@@ -79,12 +99,12 @@
 								/>
 							<ObjectNumber number="{
 							path: 'NetAmount',
-							formatter: '.formatter.currencyValue'
+							formatter: '.formatter.dotToComaChanger'
 								}"
 								/>
 							<ObjectNumber number="{
 							path: 'TaxAmount',
-							formatter: '.formatter.currencyValue'
+							formatter: '.formatter.dotToComaChanger'
 								}"
 								/>
 							<Text text="{

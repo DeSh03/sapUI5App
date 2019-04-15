@@ -1,4 +1,4 @@
-sap.ui.define([], function () {
+sap.ui.define(["sap/ui/core/format/NumberFormat"], function () {
 	"use strict";
 
 	return {
@@ -17,12 +17,21 @@ sap.ui.define([], function () {
 			return parseFloat(sValue).toFixed(2);
 		},
 		
-		grossAmountChecker : function (gValue){
-			if (gValue > 10000){
+		grossAmountChecker : function (sValue){
+			if (sValue > 10000){
 				return "Error";
 			}
 			else {return "None";}
 			
+		},
+		
+		dotToComaChanger : function (sValue) {
+			var oFormatOptions = {
+				maxFractionDigits: 2,
+				decimalSeparator: ","
+			};
+			var oFloatFormat = sap.ui.core.format.NumberFormat.getFloatInstance(oFormatOptions);
+			return oFloatFormat.format(sValue);
 		}
 	};
 });
