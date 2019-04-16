@@ -16,11 +16,7 @@
 				text="{CompanyName}"
 				level="H2"/>
 		</semantic:titleHeading>
-		<semantic:headerContent>
-				<Button text="Client details"
-						tooltip="Client details"
-						press="onPress">
-				</Button>
+			<semantic:titleExpandedContent>
 			<Panel id="companyInfo" expandable="true" >
 				<content>
 					<Label 
@@ -55,9 +51,8 @@
 					</l:Grid>
 				</content>
 			</Panel>
-		</semantic:headerContent>
+		</semantic:titleExpandedContent>
 		<semantic:content>
-			
 			<Table
 				id="lineItemsList"
 				width="auto"
@@ -70,40 +65,42 @@
 						<Title
 							id="lineItemsTitle"
 							text="{detailView>/lineItemListTitle}"
+							textAlign="Right"
 							titleStyle="H3"
 							level="H3"/>
 					</Toolbar>
 				</headerToolbar>
 				<columns>
-					<Column id= "orderNumber">
+					<Column id= "orderNumber" hAlign="Center">
 						<Label labelFor="myColumn"
 							    design="Bold"
+							    textAlign="Left"
 							    text="{i18n>detailOrderNumber}"
 							    wrapping="true"
 						/>
 					</Column>
-					<Column id ="grossAmount">
+					<Column id ="grossAmount" hAlign="Right">
 						<Label labelFor="grossAmount"
 							    design="Bold"
 							    text="{i18n>detailGrossAmount}"
 							    wrapping="true"
 						/>
 					</Column>
-					<Column id = "netAmount">
+					<Column id = "netAmount" hAlign="Right">
 						<Label labelFor="netAmount"
 							    design="Bold"
 							    text="{i18n>detailNetAmount}"
 							    wrapping="true"
 						/>
 					</Column>
-					<Column id = "taxAmount">
+					<Column id = "taxAmount" hAlign="Right">
 						<Label labelFor="taxAmount"
 							    design="Bold"
 							    text="{i18n>detailTaxAmount}"
 							    wrapping="true"
 						/>
 					</Column>
-					<Column id = "detailCurrency" minScreenWidth="Tablet">
+					<Column id = "detailCurrency" minScreenWidth="Tablet" hAlign="Left">
 						<Label labelFor="grossAmount"
 							    design="Bold"
 							    text="{i18n>detailCurrency}"
@@ -115,7 +112,7 @@
 					<ColumnListItem>
 						<cells>
 							<ObjectIdentifier
-							title="{
+							text="{
 								path : 'SalesOrderID', 
 								type : 'sap.ui.model.odata.type.String', 
 								constraints: { 
@@ -130,17 +127,20 @@
 							state="{
 							path: 'GrossAmount',
 							formatter: '.formatter.grossAmountChecker'
-								}"	
+								}"
+							emphasized="false"
 								/>
 							<ObjectNumber number="{
 							path: 'NetAmount',
 							formatter: '.formatter.dotToComaChanger'
 								}"
+							emphasized="false"
 								/>
 							<ObjectNumber number="{
 							path: 'TaxAmount',
 							formatter: '.formatter.dotToComaChanger'
 								}"
+							emphasized="false"
 								/>
 							<Text text="{
 								path: 'CurrencyCode'
@@ -151,32 +151,5 @@
 				</items>
 			</Table>
 		</semantic:content>
-		<!--Semantic ShareMenu Buttons-->
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction
-				id="shareEmail"
-				press=".onSendEmailPress"/>
-		</semantic:sendEmailAction>
-
-		<semantic:closeAction>
-			<semantic:CloseAction
-					id="closeColumn"
-					press=".onCloseDetailPress"/>
-		</semantic:closeAction>
-
-		<semantic:fullScreenAction>
-			<semantic:FullScreenAction
-					id="enterFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
-		</semantic:fullScreenAction>
-		<semantic:exitFullScreenAction>
-			<semantic:ExitFullScreenAction
-					id="exitFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
-		</semantic:exitFullScreenAction>
-
 	</semantic:SemanticPage>
-
 </mvc:View>
