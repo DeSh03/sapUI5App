@@ -52,19 +52,13 @@
 							</layoutData>
 						</SearchField>
 						<ToolbarSpacer/>
-						<Button
-							id="sortButton"
-							press=".onOpenViewSettings"
-							icon="sap-icon://sort"
-							type="Transparent"/>
 					</OverflowToolbar>
 				</headerToolbar>
 				<items>
 					<ObjectListItem
 						type="Navigation"
 						press=".onSelectionChange"
-						title="{CompanyName}"
->
+						title="{CompanyName}">
 					</ObjectListItem>
 				</items>
 			</List>
