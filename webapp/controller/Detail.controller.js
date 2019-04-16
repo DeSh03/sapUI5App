@@ -55,12 +55,6 @@ sap.ui.define([
 		  */
 		 onPress: function (evt) {
 			MessageToast.show(evt.getSource().getId() + " Pressed");
-			var element = $(document).find("companyInfo");
-			if(element.visble === "false")
-			{
-			element.visble = "true";
-			}    
-			else{element.visble = "false";}
 		},
 		
 		
