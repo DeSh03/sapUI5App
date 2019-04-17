@@ -2,26 +2,30 @@
 		<semantic:titleHeading>
 			<Title text="{CompanyName}" level="H2"/>
 		</semantic:titleHeading>
-			<semantic:titleExpandedContent><Panel id="companyInfo" expandable="true" width="40%">
-				<content>
-					<Label text="{i18n>detailViewPartnerInfo}" design="Bold"/>
-					<l:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L6 M6 S10">
-						<l:content>
-						<VBox>
-							<Text text="{i18n>detailsStreet}"/>
-							<Text text="{Address/Street} {Address/Building}"/>
-							<Text></Text>
-							<Text text="{i18n>detailsCity}"/>
-							<Text text="{Address/City}"/>
-						    <Text></Text>
-						    <Text text="{i18n>detailsCountry}"/>
-							<Text text="{Address/Country}"/>
-							<Text></Text>
-							<Text text="{i18n>detailsPostalCode}"/>
-							<Text text="{Address/PostalCode}"/>
-						</VBox>
-						<VBox>
-						    <Image src="{
+			<semantic:titleExpandedContent>
+				<IconTabBar
+		id="idIconTabBarMulti"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter
+				icon="sap-icon://hint">
+				<List
+				headerText="Address" >
+				<DisplayListItem
+					label="{i18n>detailsStreet}"
+					value="{Address/Street} {Address/Building}" />
+				<DisplayListItem
+					label="{i18n>detailsCity}"
+					value="{Address/City}" />
+				<DisplayListItem
+					label="{i18n>detailsCountry}"
+					value="{Address/Country}"/>
+				<DisplayListItem
+					label="{i18n>detailsPostalCode}"
+					value="{Address/PostalCode}"/>
+			</List>
+				 <Image src="{
 						      parts: [
 						        'Address/Building',
 						        'Address/Street',
@@ -32,11 +36,11 @@
 						    }"
 						    alt="{i18n>mapAltText}"
 						     />
-						</VBox>
-					</l:content>
-					</l:Grid>
-				</content>
-			</Panel>
+			</IconTabFilter>
+			<IconTabFilter></IconTabFilter>
+		</items>
+	</IconTabBar>
+
 		</semantic:titleExpandedContent>
 		<semantic:content>
 			<Table id="lineItemsList" width="auto" items="{ToSalesOrders}" updateFinished=".onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}">
