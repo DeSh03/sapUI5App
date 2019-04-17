@@ -20,6 +20,19 @@
 							<Text text="{i18n>detailsPostalCode}"/>
 							<Text text="{Address/PostalCode}"/>
 						</VBox>
+						<VBox>
+						    <Image src="{
+						      parts: [
+						        'Address/Building',
+						        'Address/Street',
+						        'Address/PostalCode',
+						        'Address/City'
+						      ],
+						      formatter: '.formatter.formatMapUrl'
+						    }"
+						    alt="{i18n>mapAltText}"
+						     />
+						</VBox>
 					</l:content>
 					</l:Grid>
 				</content>
