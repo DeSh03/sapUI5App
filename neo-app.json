@@ -43,7 +43,16 @@
         "name": "ES5"
       },
       "description": "ES5 Demo Service"
-    }
+    },
+	{
+	  "path": "/GoogleMaps",
+	  "target": {
+	    "type": "destination",
+	    "name": "GoogleMaps",
+	    "entryPath": "/"
+	  },
+	  "description": "Google Maps API"
+	}
   ],
   "welcomeFile": "/webapp/index.html",
   "sendWelcomeFileRedirect": true
