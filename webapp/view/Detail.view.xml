@@ -14,13 +14,12 @@
 						<Column/>
 					</columns>
 					<ColumnListItem>
-							<List headerText="Address" width="30%">
+							<List headerText="{i18n>detailViewPartnerInfo}" width="50%">
 							<DisplayListItem label="{i18n>detailsStreet}" value="{Address/Street} {Address/Building}"/>
 							<DisplayListItem label="{i18n>detailsCity}" value="{Address/City}"/>
 							<DisplayListItem label="{i18n>detailsCountry}" value="{Address/Country}"/>
 							<DisplayListItem label="{i18n>detailsPostalCode}" value="{Address/PostalCode}"/>
 							</List>
-							
 							<Image src="{parts: ['Address/Building','Address/Street','Address/PostalCode','Address/City'],      formatter: '.formatter.formatMapUrl'}" alt="{i18n>mapAltText}"/>
 					</ColumnListItem>
 				 </Table>
@@ -28,7 +27,6 @@
 			<IconTabFilter enabled="false" visible="false"/>
 		</items>
 	</IconTabBar>
-
 		</semantic:titleExpandedContent>
 		<semantic:content>
 			<Table id="lineItemsList" width="auto" items="{ToSalesOrders}" updateFinished=".onListUpdateFinished" noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}">
