@@ -97,6 +97,13 @@
 						"master",
 						"object"
 					]
+				},
+				{
+					"name": "orderDetails",
+					"pattern": "orderDetails",
+					"target": [
+						"orderDetails"
+					]
 				}
 			],
 			"targets": {
@@ -119,6 +126,11 @@
 				"notFound": {
 					"viewName": "NotFound",
 					"viewId": "notFound"
+				},
+				"orderDetails": {
+					"viewType": "XML",
+					"viewName": "orderDetails",
+					"controlAggregation": "midColumnPages"
 				}
 			}
 		}
