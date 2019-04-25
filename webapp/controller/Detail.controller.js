@@ -36,9 +36,16 @@ sap.ui.define([
 		/** 
 		 *Metoda do usunięcia 
 		 */
-		onPress: function (evt) {
-			MessageToast.show(evt.getSource().getId() + " Pressed");
+		_showObject: function (oItem) {
+			this.getRouter().navTo("orderDescription", {
+				objectId: oItem.getBindingContext().getProperty("SalesOrderID")
+			});
 		},
+
+		onPress: function (evt) {
+			this._showObject(evt.getSource());
+		},
+		
 		onSendEmailPress: function () {
 			var oViewModel = this.getModel("detailView");
 			URLHelper.triggerEmail(null, oViewModel.getProperty("/shareSendEmailSubject"), oViewModel.getProperty("/shareSendEmailMessage"));

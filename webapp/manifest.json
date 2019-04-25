@@ -84,28 +84,25 @@
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "master",
-					"target": "master"
-				},
-				{
-					"pattern": "BusinessPartnerSet/{objectId}",
-					"name": "object",
-					"target": [
-						"master",
-						"object"
-					]
-				},
-				{
-					"name": "orderDetails",
-					"pattern": "orderDetails",
-					"target": [
-						"orderDetails"
-					]
-				}
-			],
+			"routes": [{
+				"pattern": "",
+				"name": "master",
+				"target": "master"
+			}, {
+				"pattern": "BusinessPartnerSet/{objectId}",
+				"name": "object",
+				"target": [
+					"master",
+					"object"
+				]
+			}, {
+				"pattern": "BusinessPartnerSet/{objectId}/SalesOrderSet/{objectId}",
+				"name": "orderDescription",
+				"target": [
+					"master",
+					"orderDescription"
+				]
+			}],
 			"targets": {
 				"master": {
 					"viewName": "Master",
@@ -127,9 +124,11 @@
 					"viewName": "NotFound",
 					"viewId": "notFound"
 				},
-				"orderDetails": {
-					"viewType": "XML",
-					"viewName": "orderDetails",
+				"orderDescription": {
+					"viewName": "OrderDescription",
+					"viewId": "orderDescription",
+					"viewLevel": 3,
+					"title": "orderDescription",
 					"controlAggregation": "midColumnPages"
 				}
 			}

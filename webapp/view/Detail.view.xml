@@ -53,7 +53,7 @@
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" type="Active">
+					<ColumnListItem press=".onPress" type="Active">
 						<cells>
 							<ObjectIdentifier text="{         path : 'SalesOrderID',          type : 'sap.ui.model.odata.type.String',          constraints: {          isDigitSequence : true              }          }"/>
 							<ObjectNumber number="{        path: 'GrossAmount',        formatter: '.formatter.dotToComaChanger'         }" state="{        path: 'GrossAmount',        formatter: '.formatter.grossAmountChecker'         }" emphasized="false"/>
