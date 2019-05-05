@@ -38,7 +38,7 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function () {
 	      */
 	    formatMapUrl: function(sBuilding, sStreet, sZIP, sCity) {
 	      return "/GoogleMaps/staticmap?zoom=16&size=400x400&markers="
-	        + jQuery.sap.encodeURL(sBuilding +" "+ sStreet + ", " + sZIP +  " " + sCity ) + "&key=AIzaSyCLcbAyetKV-L7f6JagaQZ9HCeAT4shlUM";
+	        + jQuery.sap.encodeURL(sBuilding +" "+ sStreet + ", " + sZIP +  " " + sCity ) + "&key=AIzaSyDM35Lu2OXI3pF9VhO4v9_NDEFUiq-3oFI";
 	    }
 	};
 });
