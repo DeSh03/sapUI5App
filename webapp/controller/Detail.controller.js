@@ -2,12 +2,10 @@ sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
-	"sap/m/library",
-	"sap/m/MessageToast"
-], function (BaseController, JSONModel, formatter, mobileLibrary, MessageToast) {
+	"sap/m/library"
+], function (BaseController, JSONModel, formatter, mobileLibrary) {
 	"use strict";
-	// shortcut for sap.m.URLHelper
-	var URLHelper = mobileLibrary.URLHelper;
+
 	return BaseController.extend("opensap.salesOrderViewer.SalesOrderViewer.controller.Detail", {
 		formatter: formatter,
 		/* =========================================================== */
@@ -29,10 +27,8 @@ sap.ui.define([
 		/* =========================================================== */
 		/* event handlers                                              */
 		/* =========================================================== */
-		/**
-		 * Event handler when the share by E-Mail button has been clicked
-		 * @public
-		 */
+
+
 		_showObject: function (oItem) {
 			this.getRouter().navTo("orderDescription", {
 				objectId: oItem.getBindingContext().getProperty("SalesOrderID")
@@ -41,11 +37,6 @@ sap.ui.define([
 
 		onPress: function (evt) {
 			this._showObject(evt.getSource());
-		},
-		
-		onSendEmailPress: function () {
-			var oViewModel = this.getModel("detailView");
-			URLHelper.triggerEmail(null, oViewModel.getProperty("/shareSendEmailSubject"), oViewModel.getProperty("/shareSendEmailMessage"));
 		},
 		/**
 		 * Updates the item count within the line item table's header
@@ -154,33 +145,7 @@ sap.ui.define([
 			// Restore original busy indicator delay for the detail view
 			oViewModel.setProperty("/delay", iOriginalViewBusyDelay);
 		},
-		/**
-		 * Set the full screen mode to false and navigate to master page
-		 */
-		onCloseDetailPress: function () {
-			this.getModel("appView").setProperty("/actionButtonsInfo/midColumn/fullScreen", false);
-			// No item should be selected on master after detail page is closed
-			this.getOwnerComponent().oListSelector.clearMasterListSelection();
-			this.getRouter().navTo("master");
-		},
-		/**
-		 * Toggle between full and non full screen mode.
-		 */
-		toggleFullScreen: function () {
-			var bFullScreen = this.getModel("appView").getProperty("/actionButtonsInfo/midColumn/fullScreen");
-			this.getModel("appView").setProperty("/actionButtonsInfo/midColumn/fullScreen", !bFullScreen);
-			if (!bFullScreen) {
-				// store current layout and go full screen
-				this.getModel("appView").setProperty("/previousLayout", this.getModel("appView").getProperty("/layout"));
-				this.getModel("appView").setProperty("/layout", "MidColumnFullScreen");
-			} else {
-				// reset to previous layout
-				this.getModel("appView").setProperty("/layout", this.getModel("appView").getProperty("/previousLayout"));
-			}
-		},
-		/**
-		 *@memberOf opensap.salesOrderViewer.SalesOrderViewer.controller.Detail
-		 */
+
 		action: function (oEvent) {
 			var that = this;
 			var actionParameters = JSON.parse(oEvent.getSource().data("wiring").replace(/'/g, "\""));

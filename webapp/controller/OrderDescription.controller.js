@@ -1,4 +1,3 @@
-/*global location */
 sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
@@ -7,9 +6,6 @@ sap.ui.define([
 		"sap/ui/core/routing/History"
 ], function (BaseController, JSONModel, formatter, mobileLibrary, History) {
 	"use strict";
-
-	// shortcut for sap.m.URLHelper
-	var URLHelper = mobileLibrary.URLHelper;
 
 	return BaseController.extend("opensap.salesorderviewer.SalesOrderViewer.controller.OrderDescription", {
 
@@ -39,19 +35,6 @@ sap.ui.define([
 		/* event handlers                                              */
 		/* =========================================================== */
 
-		/**
-		 * Event handler when the share by E-Mail button has been clicked
-		 * @public
-		 */
-		onSendEmailPress: function () {
-			var oViewModel = this.getModel("orderDescriptionView");
-
-			URLHelper.triggerEmail(
-				null,
-				oViewModel.getProperty("/shareSendEmailSubject"),
-				oViewModel.getProperty("/shareSendEmailMessage")
-			);
-		},
 
 		/* =========================================================== */
 		/* begin: internal methods                                     */
@@ -124,9 +107,7 @@ sap.ui.define([
 				sObjectId = oObject.BusinessPartnerID,
 				sObjectName = oObject.CompanyName,
 				oViewModel = this.getModel("orderDescriptionView");
-
 			this.getOwnerComponent().oListSelector.selectAListItem(sPath);
-
 			oViewModel.setProperty("/shareSendEmailSubject",
 				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
 			oViewModel.setProperty("/shareSendEmailMessage",
@@ -146,33 +127,6 @@ sap.ui.define([
 			oViewModel.setProperty("/busy", true);
 			// Restore original busy indicator delay for the detail view
 			oViewModel.setProperty("/delay", iOriginalViewBusyDelay);
-		},
-
-
-		/**
-		 * Set the full screen mode to false and navigate to master page
-		 */
-		onCloseDetailPress: function () {
-			this.getModel("appView").setProperty("/actionButtonsInfo/midColumn/fullScreen", false);
-			// No item should be selected on master after detail page is closed
-			this.getOwnerComponent().oListSelector.clearMasterListSelection();
-			this.getRouter().navTo("master");
-		},
-
-		/**
-		 * Toggle between full and non full screen mode.
-		 */
-		toggleFullScreen: function () {
-			var bFullScreen = this.getModel("appView").getProperty("/actionButtonsInfo/midColumn/fullScreen");
-			this.getModel("appView").setProperty("/actionButtonsInfo/midColumn/fullScreen", !bFullScreen);
-			if (!bFullScreen) {
-				// store current layout and go full screen
-				this.getModel("appView").setProperty("/previousLayout", this.getModel("appView").getProperty("/layout"));
-				this.getModel("appView").setProperty("/layout", "MidColumnFullScreen");
-			} else {
-				// reset to previous layout
-				this.getModel("appView").setProperty("/layout", this.getModel("appView").getProperty("/previousLayout"));
-			}
 		},
 
 		/**
