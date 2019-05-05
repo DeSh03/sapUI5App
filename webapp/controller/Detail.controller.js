@@ -33,9 +33,6 @@ sap.ui.define([
 		 * Event handler when the share by E-Mail button has been clicked
 		 * @public
 		 */
-		/** 
-		 *Metoda do usunięcia 
-		 */
 		_showObject: function (oItem) {
 			this.getRouter().navTo("orderDescription", {
 				objectId: oItem.getBindingContext().getProperty("SalesOrderID")
