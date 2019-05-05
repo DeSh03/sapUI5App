@@ -1,36 +1,40 @@
-<mvc:View height="100%" controllerName="opensap.salesOrderViewer.SalesOrderViewer.controller.OrderDescription" xmlns:f="sap.ui.layout.form"
-	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<Page showNavButton="true" navButtonPress="onNavBack" id="idPage" title="{i18n>ordersRecords}">
-		<!-- this CSS class add a standard spacing to all the page content -->
+<mvc:View 
+	height="100%" 
+	controllerName="opensap.salesOrderViewer.SalesOrderViewer.controller.OrderDescription" 
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m">
+		<Page showNavButton="true" navButtonPress="onNavBack" id="idPage" title="{i18n>ordersRecords}">
 		<content>
 			<ObjectHeader></ObjectHeader>
 			<Table noDataText="{i18n>thereAreNoOrders}" id="idProductsTable" inset="false" class="sapFSemanticPageAlignContent" width="auto">
 				<columns>
-					<Column>
+					<Column hAlign="Center">
 						<Label design="Bold" text="{i18n>orderNumber}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
 						<Label design="Bold" text="{i18n>gross}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="false">
+					<Column minScreenWidth="Tablet" demandPopin="false" hAlign="Right">
 						<Label design="Bold" text="{i18n>net}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="false">
+					<Column minScreenWidth="Tablet" demandPopin="false" hAlign="Right">
 						<Label design="Bold" text="{i18n>tax}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
 						<Label design="Bold" text="{i18n>currency}"/>
 					</Column>
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells >
-							<Text text="{ path: 'SalesOrderID', formatter: '.formatter.removeZerros' }"/>
-							<ObjectStatus state="{= ${GrossAmount} > 10000 ? 'Error' : 'None'}"
-								text="{path: 'GrossAmount', type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: 2}}"/>
-							<Text text="{path: 'NetAmount', type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: 2}}"/>
-							<Text text="{path: 'TaxAmount', type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: 2}}"/>
-							<Text text="{CurrencyCode}"/>
+							<Text text="{path : 'SalesOrderID', type : 'sap.ui.model.odata.type.String',constraints: {isDigitSequence : true}}"/>
+							<ObjectNumber number="{path: 'GrossAmount', formatter: '.formatter.dotToComaChanger'}" 
+										  state="{path: 'GrossAmount',formatter: '.formatter.grossAmountChecker'}" emphasized="false"/>
+							<ObjectNumber number="{path: 'NetAmount', formatter: '.formatter.dotToComaChanger'}" emphasized="false"/>
+							<ObjectNumber number="{path: 'TaxAmount', formatter: '.formatter.dotToComaChanger'}" emphasized="false"/>
+							<Text text="{path: 'CurrencyCode'}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
@@ -38,43 +42,43 @@
 			<Table headerText="{i18n>ordersRecords}" noDataText="There Are No Orders" items="{path:'ToLineItems'}" id="idProductsItemsTable"
 				inset="false" class="sapFSemanticPageAlignContent" width="auto">
 				<columns>
-					<Column>
+					<Column hAlign="Right">
 						<Label design="Bold" text="{i18n>position}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
 						<Label design="Bold" text="{i18n>product}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
 						<Label design="Bold" text="{i18n>gross}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="false">
+					<Column minScreenWidth="Tablet" demandPopin="false" hAlign="Right">
 						<Label design="Bold" text="{i18n>net}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="false">
+					<Column minScreenWidth="Tablet" demandPopin="false" hAlign="Right">
 						<Label design="Bold" text="{i18n>tax}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
 						<Label design="Bold" text="{i18n>currency}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="false">
+					<Column minScreenWidth="Tablet" demandPopin="false" hAlign="Center">
 						<Label design="Bold" text="{i18n>deliveryDate}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
 						<Label design="Bold" text="{i18n>amount}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
 						<Label design="Bold" text="{i18n>unit}"/>
 					</Column>
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells >
-							<Text text="{ path: 'ItemPosition', formatter: '.formatter.removeZerros' }"/>
+							<Text text="{ path: 'ItemPosition', type : 'sap.ui.model.odata.type.String',constraints: {isDigitSequence : true}}"/>
 							<Text text="{path: 'ProductID'}"/>
-							<ObjectStatus state="{= ${GrossAmount} > 10000 ? 'Error' : 'None'}"
-								text="{path: 'GrossAmount', type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: 2}}"/>
-							<Text text="{path: 'NetAmount', type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: 2}}"/>
-							<Text text="{path: 'TaxAmount', type: 'sap.ui.model.type.Float', formatOptions: {minFractionDigits: 2}}"/>
+							<ObjectStatus state="{path: 'GrossAmount', formatter: '.formatter.grossAmountChecker'}"
+								text="{path: 'GrossAmount', formatter: '.formatter.dotToComaChanger'}"/>
+							<Text text="{path: 'NetAmount', formatter: '.formatter.dotToComaChanger'}"/>
+							<Text text="{path: 'TaxAmount', formatter: '.formatter.dotToComaChanger'}"/>
 							<Text text="{CurrencyCode}"/>
 							<Text text="{path: 'DeliveryDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'yyyy.MM.dd'}}"/>
 							<Text text="{Quantity}"/>
